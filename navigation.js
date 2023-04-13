@@ -10,12 +10,12 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SplashScreen"
+        initialRouteName="HomeScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="FoodDetails" component={FoodDetails} />
+        <Stack.Screen name="FoodDetailsScreen" component={FoodDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
