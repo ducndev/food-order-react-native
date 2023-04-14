@@ -1,21 +1,38 @@
 import {
   Image,
-  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import Modal from "../components/Modal";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { homeNavIcons } from "../datas";
 import FoodCard from "../components/FoodCard";
 import { foods } from "../datas";
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const [activeIcon, setActiveIcon] = useState("Home");
+  const [modalActive, setModalActive] = useState(true);
+
+  const toggleModal = () => {
+    setModalActive(!modalActive);
+  };
   return (
     <SafeAreaView style={styles.homeContainer}>
+      {/* <View
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#ccc",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      ></View> */}
       <View
         style={{
           flexDirection: "row",
@@ -102,7 +119,11 @@ const HomeScreen = ({navigation}) => {
         ))}
       </View>
       <View style={{ marginTop: 32, flexDirection: "row" }}>
-        <FoodCard foods={foods} navigation={navigation}/>
+        <FoodCard
+          foods={foods}
+          navigation={navigation}
+          toggleModal={toggleModal}
+        />
       </View>
       <View
         style={{
@@ -130,10 +151,11 @@ const HomeScreen = ({navigation}) => {
             borderBottomLeftRadius: 50,
           }}
         >
-          <Text style={{fontSize: 18, fontWeight: 'bold'}}>2 items</Text>
-          <Text style={{fontSize: 18, fontWeight: 'bold'}}>$ 27.00</Text>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>2 items</Text>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>$ 27.00</Text>
         </View>
       </View>
+      {modalActive ? <Modal toggleModal={toggleModal} /> : null}
     </SafeAreaView>
   );
 };

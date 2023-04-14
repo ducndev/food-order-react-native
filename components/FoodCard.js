@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-const FoodCard = ({ foods }) => {
+const FoodCard = ({ foods, toggleModal }) => {
   const navigation = useNavigation();
   function navigateToFoodDetails(food) {
     navigation.navigate("FoodDetailsScreen", { food });
@@ -74,7 +74,7 @@ const FoodCard = ({ foods }) => {
                     source={{
                       uri: "https://img.icons8.com/ios-filled/100/FA5252/like--v1.png",
                     }}
-                    style={{ width: 15, height: 15, resizeMode: 'contain' }}
+                    style={{ width: 15, height: 15, resizeMode: "contain" }}
                   />
                 </View>
               </View>
@@ -126,12 +126,14 @@ const FoodCard = ({ foods }) => {
                       borderRadius: 50,
                     }}
                   >
-                    <Image
-                      source={{
-                        uri: "https://img.icons8.com/ios-filled/100/FFFFFF/plus-math.png",
-                      }}
-                      style={{ width: 15, height: 15 }}
-                    />
+                    <TouchableOpacity onPress={toggleModal}>
+                      <Image
+                        source={{
+                          uri: "https://img.icons8.com/ios-filled/100/FFFFFF/plus-math.png",
+                        }}
+                        style={{ width: 15, height: 15 }}
+                      />
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
